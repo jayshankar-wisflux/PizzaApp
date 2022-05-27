@@ -17,8 +17,8 @@ router.get("/:id", (req, res) => {
 
 //for user login
 router.post("/login", (req, res) => {
-  console.log("In Login Back end ");
-  usermodel.findOne({ username: req.body.username }, (err, doc) => {
+  console.log("In Login Back end ",req.body);
+  usermodel.findOne({ username:req.body.username }, (err, doc) => {
     if (doc) {
       if (req.body.password === doc.password) {
         const test = {
@@ -35,7 +35,7 @@ router.post("/login", (req, res) => {
         console.log("Invalid credentials");
       }
     } else {
-      console.log("User not  found " + err);
+      console.log("User not  found " + err+" Doc value "+doc);
       res.status(401).send(err);
     }
   });
@@ -56,7 +56,7 @@ router.get("/", (req, res) => {
 // Post API
 router.post("/", (req, res) => {
   let newUser = new usermodel({
-    name: req.body.name,
+    name: req.body.email,
     username: req.body.username,
     password: req.body.password,
     mobile: req.body.mobile,

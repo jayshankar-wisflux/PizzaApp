@@ -21,15 +21,15 @@ export class AuthenticationService {
     );
   }
   signup(
-    name: string,
     username: string,
+    email: string,
     password: string,
     mobile: string,
     address: string
   ) {
     return this.http.post<any>(
       'http://127.0.0.1:5000/api/users',
-      { name, username, password, mobile, address },
+      { email, username, password, mobile, address },
       { headers: { 'Content-Type': 'application/json' } }
     );
   }
