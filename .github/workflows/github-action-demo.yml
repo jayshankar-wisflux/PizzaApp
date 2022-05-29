@@ -16,8 +16,8 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       
-      - run: npm install && npm run start:prod
+      - run: npm install 
         working-directory: ./PizzaBackend
-      - run: npm install && npm run start
+      - run: npm install  
         working-directory: ./Pizzafrontend
         
