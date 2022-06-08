@@ -2,7 +2,7 @@ name: Pizza App
 on: [push]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: self-hosted #ubuntu-latest
+    runs-on: ubuntu-latest # self-hosted #
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
@@ -11,7 +11,7 @@ jobs:
         working-directory: ./PizzaBackend
       - run: docker build -t pizzafrontend .
         working-directory: ./Pizzafrontend
-      # - run: kind create cluster --name pizzaapp
+      - run: kind create cluster --name pizzaapp
       - run: kind load docker-image pizzafrontend --name pizzaapp
       - run: kind load docker-image pizzabackend --name pizzaapp
       - run: kubectl apply -f k8s/namespace.yml
@@ -20,7 +20,7 @@ jobs:
       - run: kubectl apply -f k8s/server/deployment.yml
       - run: kubectl apply -f k8s/server/services.yml
       - run: kubectl apply -f k8s/ingress.yml
-      # - run: kubectl get pods --all-namespaces
+      - run: kubectl get pods --all-namespaces
       - run: kubectl get deployments --all-namespaces
       - run: kubectl get svc --all-namespaces
 
