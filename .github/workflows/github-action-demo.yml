@@ -7,13 +7,13 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: docker build -t PizzaBackend .
+      - run: docker build -t pizzabackend .
         working-directory: ./PizzaBackend
-      - run: docker build -t Pizzafrontend .
+      - run: docker build -t pizzafrontend .
         working-directory: ./Pizzafrontend
 
-      - run: kind load docker-image Pizzafrontend --name=pizzaapp
-      - run: kind load docker-image PizzaBackend --name=pizzaapp
+      - run: kind load docker-image pizzafrontend --name=pizzaapp
+      - run: kind load docker-image pizzabackend --name=pizzaapp
 
       - run: kubectl apply -f k8s/dashboard/deployment.yml
       - run: kubectl apply -f k8s/dashboard/service.yml
