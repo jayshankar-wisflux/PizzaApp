@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 // const HeaderOptions={header: new HttpHeaders({'Content-Type': 'application/json'})};
 
@@ -15,7 +16,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {}
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(
-      'http://127.0.0.1:5000/api/users/login',
+      `${environment.serverUrl}/api/users/login`,
       { username, password },
       { headers: { 'Content-Type': 'application/json' } }
     );
@@ -28,7 +29,7 @@ export class AuthenticationService {
     address: string
   ) {
     return this.http.post<any>(
-      'http://127.0.0.1:5000/api/users',
+      `${environment.serverUrl}api/users`,
       { email, username, password, mobile, address },
       { headers: { 'Content-Type': 'application/json' } }
     );
