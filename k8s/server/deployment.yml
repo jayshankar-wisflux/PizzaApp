@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pizzabackend
+  namespace: pizzaapp
+  labels:
+    app: pizzabackend
+spec:
+  selector:
+    matchLabels:
+      app: pizzabackend
+  replicas: 1
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: pizzabackend
+    spec:
+      containers:
+        - name: pizzabackend
+          image: PizzaBackend$(git rev-parse --short "$GITHUB_SHA")
+          imagePullPolicy: IfNotPresent
+  
+          ports:
+            - containerPort: 5000
+      # imagePullSecrets:
+      #   - name: regcred1
