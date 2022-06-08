@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: pizzabackend
-          image: PizzaBackend$(git rev-parse --short "$GITHUB_SHA")
+          image: PizzaBackend
           imagePullPolicy: IfNotPresent
   
           ports:

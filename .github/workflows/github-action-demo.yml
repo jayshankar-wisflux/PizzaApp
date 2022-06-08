@@ -14,8 +14,8 @@ jobs:
       - run: docker build -t Pizzafrontend$(git rev-parse --short "$GITHUB_SHA") .
         working-directory: ./Pizzafrontend
 
-      - run: kind load docker-image Pizzafrontend$(git rev-parse --short "$GITHUB_SHA") --name=pizzaapp
-      - run: kind load docker-image PizzaBackend$(git rev-parse --short "$GITHUB_SHA") --name=pizzaapp
+      - run: kind load docker-image Pizzafrontend --name=pizzaapp
+      - run: kind load docker-image PizzaBackend --name=pizzaapp
 
       - run: kubectl apply -f k8s/dashboard/deployment.yml
       - run: kubectl apply -f k8s/dashboard/service.yml
