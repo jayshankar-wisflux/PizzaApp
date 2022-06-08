@@ -11,10 +11,9 @@ jobs:
         working-directory: ./PizzaBackend
       - run: docker build -t pizzafrontend .
         working-directory: ./Pizzafrontend
-
+      - run: kind create cluster --name pizzaapp
       - run: kind load docker-image pizzafrontend --name=pizzaapp
       - run: kind load docker-image pizzabackend --name=pizzaapp
-
       - run: kubectl apply -f k8s/dashboard/deployment.yml
       - run: kubectl apply -f k8s/dashboard/service.yml
       - run: kubectl apply -f k8s/server/deployment.yml
