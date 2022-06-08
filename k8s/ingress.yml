@@ -4,7 +4,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
   name: pizzaapp-ingress
-  # namespace: pizzaapp
+  namespace: pizzaapp
 spec:
   rules:
   - http:
@@ -13,6 +13,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: pizzaapp-dashboard-service
+            name: pizzaappfrontend-service
             port:
               number: 80

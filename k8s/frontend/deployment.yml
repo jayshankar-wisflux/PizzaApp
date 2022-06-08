@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pizzafrontend
-  # namespace: pizzaapp
+  namespace: pizzaapp
   labels:
     app: pizzafrontend
 spec:
